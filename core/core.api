@@ -1,12 +1,49 @@
-type Request {
-	Name string `path:"name,options=you|me"`
-}
-
-type Response {
-	Message string `json:"message"`
-}
-
 service core-api {
-	@handler CoreHandler
-	get /from/:name(Request) returns (Response)
+	@handler UserLogin
+	post /user/login(LoginRequest) returns (LoginResponse)
+	
+	@handler UserDetail
+	get /user/detail(UserDetailRequest) returns(UserDetailResponse)
+	
+	@handler UserRegister
+	post /user/register(UserRegisterRequest) returns(UserRegisterResponse)
+	
+	@handler MailCodeSend
+	post /user/mailcodesend(MailCodeSendRequest) returns(MailCodeSendResponse)
+	
+}
+
+type LoginRequest {
+	Name     string `json:"name"`
+	Password string `json:"password"`
+}
+
+type LoginResponse {
+	Token string `json:"token"`
+}
+
+type UserDetailRequest {
+	Identity string `json:"identity"`
+}
+
+type UserDetailResponse {
+	Name  string `json:"name"`
+	Email string `json:"email"`
+}
+
+type MailCodeSendRequest {
+	Mail string `json:"mail"`
+}
+
+type MailCodeSendResponse {
+}
+
+type UserRegisterRequest {
+	Name     string `json:"name"`
+	Mail     string `json:"mail"`
+	Code     string `json:"code"`
+	Password string `json:"password"`
+}
+
+type UserRegisterResponse {
 }
