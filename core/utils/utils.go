@@ -31,6 +31,7 @@ func GenerateNewToke(id uint, name, identity string, second int) (string, error)
 	return tokenString, nil
 }
 
+// GenerateCode generate random verification code
 func GenerateCode(codeLength int) (res string) {
 	s := "1234567890"
 	rand.Seed(time.Now().UnixNano())
@@ -38,4 +39,19 @@ func GenerateCode(codeLength int) (res string) {
 		res += string(s[rand.Intn(len(s))])
 	}
 	return
+}
+
+// ParseToken Decode token to UserClaims
+func ParseToken(token string) (*define.UserClaim, error) {
+	uc := new(define.UserClaim)
+	claims, err := jwt.ParseWithClaims(token, uc, func(token *jwt.Token) (interface{}, error) {
+		return []byte(define.JwtKey), nil
+	})
+	if err != nil {
+		return nil, err
+	}
+	if !claims.Valid {
+		return nil, define.TokenInvalidErr
+	}
+	return uc, nil
 }

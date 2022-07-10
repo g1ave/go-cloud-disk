@@ -48,6 +48,10 @@ type UserRegisterRequest {
 type UserRegisterResponse {
 }
 
+@server (
+	middleware: Auth
+)
+
 service core-api {
 	@handler FileUpload
 	post /file/upload(FileUploadRequest) returns (FileUploadReply)
