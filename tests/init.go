@@ -20,6 +20,10 @@ type Config struct {
 		Password string `yaml:"password"`
 		To       string `yaml:"to"`
 	}
+	COS struct {
+		SecretId  string `yaml:"secretId"`
+		SecretKey string `yaml:"secretKey"`
+	}
 }
 
 func ReadConfig(path *string) *Config {
