@@ -47,3 +47,22 @@ type UserRegisterRequest {
 
 type UserRegisterResponse {
 }
+
+service core-api {
+	@handler FileUpload
+	post /file/upload(FileUploadRequest) returns (FileUploadReply)
+}
+
+type FileUploadRequest {
+	Hash string `json:"hash,optional"`
+	Name string `json:"name,optional"`
+	Ext  string `json:"ext,optional"`
+	Size int64  `json:"size,optional"`
+	Path string `json:"path,optional"`
+}
+
+type FileUploadReply {
+	Identity string `json:"identity"`
+	Ext      string `json:"ext"`
+	Name     string `json:"name"`
+}
