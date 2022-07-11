@@ -65,14 +65,26 @@ service core-api {
 	
 	@handler FileNameUpdate
 	post /file/name/update(FileNameUpdateRequest) returns (FileNameUpdateResponse)
+	
+	@handler FolderCreate
+	post /file/folder/create(FileFolderCreateRequest) returns (FileFolderCreateResponse)
+}
+
+type FileFolderCreateRequest {
+	ParentId int    `json:"parent_id"`
+	Name     string `json:"name"`
+}
+
+type FileFolderCreateResponse {
+	Identity string `json:"identity"`
 }
 
 type FileNameUpdateRequest {
 	Identity string `json:"identity"`
 	Name     string `json:"name"`
 }
-type FileNameUpdateResponse {
-}
+type FileNameUpdateResponse {}
+
 type UserFileListRequest {
 	Id   int `json:"id,optional"`
 	Page int `json:"page,optional"`

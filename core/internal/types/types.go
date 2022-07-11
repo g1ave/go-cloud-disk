@@ -36,6 +36,15 @@ type UserRegisterRequest struct {
 type UserRegisterResponse struct {
 }
 
+type FileFolderCreateRequest struct {
+	ParentId int    `json:"parent_id"`
+	Name     string `json:"name"`
+}
+
+type FileFolderCreateResponse struct {
+	Identity string `json:"identity"`
+}
+
 type FileNameUpdateRequest struct {
 	Identity string `json:"identity"`
 	Name     string `json:"name"`
