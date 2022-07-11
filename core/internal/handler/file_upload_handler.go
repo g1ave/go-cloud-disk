@@ -44,7 +44,7 @@ func FileUploadHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		res := svcCtx.DB.First(&rp, "hash = ?", hash)
 
 		if err = res.Error; err == nil {
-			httpx.OkJson(w, &types.FileUploadReply{
+			httpx.OkJson(w, &types.FileUploadResponse{
 				Identity: rp.Identity,
 				Ext:      rp.Ext,
 				Name:     rp.Name,

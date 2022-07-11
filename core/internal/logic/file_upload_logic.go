@@ -25,7 +25,7 @@ func NewFileUploadLogic(ctx context.Context, svcCtx *svc.ServiceContext) *FileUp
 	}
 }
 
-func (l *FileUploadLogic) FileUpload(req *types.FileUploadRequest) (resp *types.FileUploadReply, err error) {
+func (l *FileUploadLogic) FileUpload(req *types.FileUploadRequest) (resp *types.FileUploadResponse, err error) {
 	rp := &models.RepositoryPool{
 		Identity: uuid.NewV4().String(),
 		Hash:     req.Hash,
@@ -39,7 +39,7 @@ func (l *FileUploadLogic) FileUpload(req *types.FileUploadRequest) (resp *types.
 	if err = res.Error; err != nil {
 		return nil, err
 	}
-	resp = new(types.FileUploadReply)
+	resp = new(types.FileUploadResponse)
 	resp.Identity = rp.Identity
 	resp.Ext = req.Ext
 	resp.Name = rp.Name

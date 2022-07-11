@@ -11,3 +11,7 @@ type RepositoryPool struct {
 	Size     int64
 	Path     string
 }
+
+func (table RepositoryPool) TableName() string {
+	return "repository_pool"
+}

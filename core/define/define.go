@@ -26,3 +26,5 @@ var (
 )
 
 var BucketURL = "https://cloud-disk-1312836572.cos.ap-chengdu.myqcloud.com"
+
+var DefaultPageSize = 10

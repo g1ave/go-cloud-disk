@@ -11,3 +11,7 @@ type ShareBasic struct {
 	ExpiredTime            int
 	ClickNum               int
 }
+
+func (table ShareBasic) TableName() string {
+	return "share_basic"
+}
