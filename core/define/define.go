@@ -23,6 +23,7 @@ var (
 	CodeMismatchErr = errors.New("code doesn't match")
 	MailMismatchErr = errors.New("email doesnt' match or code expired")
 	TokenInvalidErr = errors.New("token is invalid")
+	NameExistedErr  = errors.New("new file name existed")
 )
 
 var BucketURL = "https://cloud-disk-1312836572.cos.ap-chengdu.myqcloud.com"

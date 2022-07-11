@@ -55,15 +55,24 @@ service core-api {
 	@handler FileUpload
 	post /file/upload(FileUploadRequest) returns (FileUploadResponse)
 	
-	// 用户文件关联存储
+	// connect user to saved file
 	@handler UserRepository
 	post /file/user/repo/save(UserRepoSaveRequeset) returns (UserRepoSaveResponse)
-
-	// 用户文件列表
+	
+	// user file list
 	@handler UserFileList
 	get /file/list(UserFileListRequest) returns (UserFileListResponse)
+	
+	@handler FileNameUpdate
+	post /file/name/update(FileNameUpdateRequest) returns (FileNameUpdateResponse)
 }
 
+type FileNameUpdateRequest {
+	Identity string `json:"identity"`
+	Name     string `json:"name"`
+}
+type FileNameUpdateResponse {
+}
 type UserFileListRequest {
 	Id   int `json:"id,optional"`
 	Page int `json:"page,optional"`
@@ -86,8 +95,8 @@ type UserFile {
 }
 
 type UserRepoSaveRequeset {
-	ParentId           int64  `json:"parentId"`
-	RepositoryIdentity string `json:"repositoryIdentity"`
+	ParentId           int64  `json:"parent_id"`
+	RepositoryIdentity string `json:"repository_identity"`
 	Ext                string `json:"ext"`
 	Name               string `json:"name"`
 }

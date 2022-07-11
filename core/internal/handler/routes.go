@@ -54,6 +54,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Path:    "/file/list",
 					Handler: UserFileListHandler(serverCtx),
 				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/file/name/update",
+					Handler: FileNameUpdateHandler(serverCtx),
+				},
 			}...,
 		),
 	)

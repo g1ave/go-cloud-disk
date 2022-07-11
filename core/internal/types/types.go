@@ -36,6 +36,14 @@ type UserRegisterRequest struct {
 type UserRegisterResponse struct {
 }
 
+type FileNameUpdateRequest struct {
+	Identity string `json:"identity"`
+	Name     string `json:"name"`
+}
+
+type FileNameUpdateResponse struct {
+}
+
 type UserFileListRequest struct {
 	Id   int `json:"id,optional"`
 	Page int `json:"page,optional"`
@@ -58,8 +66,8 @@ type UserFile struct {
 }
 
 type UserRepoSaveRequeset struct {
-	ParentId           int64  `json:"parentId"`
-	RepositoryIdentity string `json:"repositoryIdentity"`
+	ParentId           int64  `json:"parent_id"`
+	RepositoryIdentity string `json:"repository_identity"`
 	Ext                string `json:"ext"`
 	Name               string `json:"name"`
 }
