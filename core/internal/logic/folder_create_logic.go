@@ -47,5 +47,7 @@ func (l *FolderCreateLogic) FolderCreate(req *types.FileFolderCreateRequest, use
 	if err = res.Error; err != nil {
 		return nil, err
 	}
+	resp = new(types.FileFolderCreateResponse)
+	resp.Identity = newFolder.Identity
 	return
 }

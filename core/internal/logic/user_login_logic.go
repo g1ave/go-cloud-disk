@@ -34,7 +34,7 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginRe
 		log.Println(err2)
 		return nil, err2
 	}
-	token, err := utils.GenerateNewToke(user.ID, user.Identity, user.Identity, 3000)
+	token, err := utils.GenerateNewToke(user.ID, user.Name, user.Identity, 3000)
 	if err != nil {
 		return nil, err
 	}

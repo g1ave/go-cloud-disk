@@ -29,7 +29,7 @@ func (l *UserRepositoryLogic) UserRepository(req *types.UserRepoSaveRequeset, us
 	up := &models.UserRepository{
 		Identity:           uuid.NewV4().String(),
 		UserIdentity:       userIdentity,
-		ParentId:           req.ParentId,
+		ParentId:           int(req.ParentId),
 		RepositoryIdentity: req.RepositoryIdentity,
 		Ext:                req.Ext,
 		Name:               req.Name,

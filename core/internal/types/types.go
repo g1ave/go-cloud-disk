@@ -36,6 +36,21 @@ type UserRegisterRequest struct {
 type UserRegisterResponse struct {
 }
 
+type MoveFileRequest struct {
+	Identity       string `json:"identity"`
+	ParentIdentity string `json:"parent_identity"`
+}
+
+type MoveFileResponse struct {
+}
+
+type DeleteFileRequest struct {
+	Identity string `json:"identity"`
+}
+
+type DeleteFileResponse struct {
+}
+
 type FileFolderCreateRequest struct {
 	ParentId int    `json:"parent_id"`
 	Name     string `json:"name"`
@@ -75,7 +90,7 @@ type UserFile struct {
 }
 
 type UserRepoSaveRequeset struct {
-	ParentId           int64  `json:"parent_id"`
+	ParentId           int    `json:"parent_id"`
 	RepositoryIdentity string `json:"repository_identity"`
 	Ext                string `json:"ext"`
 	Name               string `json:"name"`

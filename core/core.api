@@ -68,7 +68,26 @@ service core-api {
 	
 	@handler FolderCreate
 	post /file/folder/create(FileFolderCreateRequest) returns (FileFolderCreateResponse)
+	
+	@handler DeleteFile
+	post /file/delete(DeleteFileRequest) returns (DeleteFileResponse)
+	
+	@handler MoveFile
+	post /file/move(MoveFileRequest) returns (MoveFileResponse)
 }
+
+type MoveFileRequest {
+	Identity       string `json:"identity"`
+	ParentIdentity string `json:"parent_identity"`
+}
+
+type MoveFileResponse {}
+
+type DeleteFileRequest {
+	Identity string `json:"identity"`
+}
+
+type DeleteFileResponse {}
 
 type FileFolderCreateRequest {
 	ParentId int    `json:"parent_id"`
@@ -107,7 +126,7 @@ type UserFile {
 }
 
 type UserRepoSaveRequeset {
-	ParentId           int64  `json:"parent_id"`
+	ParentId           int    `json:"parent_id"`
 	RepositoryIdentity string `json:"repository_identity"`
 	Ext                string `json:"ext"`
 	Name               string `json:"name"`
