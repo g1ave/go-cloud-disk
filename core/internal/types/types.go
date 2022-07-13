@@ -36,6 +36,27 @@ type UserRegisterRequest struct {
 type UserRegisterResponse struct {
 }
 
+type FileShareDetailsRequest struct {
+	Identity string `path:"identity"`
+}
+
+type FileShareDetailsResponse struct {
+	RepositoryIdentity string `json:"repository_identity"`
+	Name               string `json:"name"`
+	Ext                string `json:"ext"`
+	Size               int64  `json:"size"`
+	Path               string `json:"path"`
+}
+
+type FileShareCreateRequest struct {
+	UserRepoIdentity string `json:"user_repo_identity"`
+	ExpiredTime      int    `json:"expired_time"`
+}
+
+type FileShareCreateResponse struct {
+	Identity string `json:"identity"`
+}
+
 type MoveFileRequest struct {
 	Identity       string `json:"identity"`
 	ParentIdentity string `json:"parent_identity"`

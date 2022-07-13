@@ -74,8 +74,36 @@ service core-api {
 	
 	@handler MoveFile
 	post /file/move(MoveFileRequest) returns (MoveFileResponse)
+	
+	// Create link to share file
+	@handler FileShareCreate
+	post /file/share/create(FileShareCreateRequest) returns(FileShareCreateResponse)
+	
+	// Query file details according shared link
+	@handler FileShareDetail
+	get /file/share/details/:identity(FileShareDetailsRequest) returns (FileShareDetailsResponse)
 }
 
+type FileShareDetailsRequest {
+	Identity string `path:"identity"`
+}
+
+type FileShareDetailsResponse {
+	RepositoryIdentity string `json:"repository_identity"`
+	Name               string `json:"name"`
+	Ext                string `json:"ext"`
+	Size               int64  `json:"size"`
+	Path               string `json:"path"`
+}
+
+type FileShareCreateRequest {
+	UserRepoIdentity string `json:"user_repo_identity"`
+	ExpiredTime      int    `json:"expired_time"`
+}
+
+type FileShareCreateResponse {
+	Identity string `json:"identity"`
+}
 type MoveFileRequest {
 	Identity       string `json:"identity"`
 	ParentIdentity string `json:"parent_identity"`
