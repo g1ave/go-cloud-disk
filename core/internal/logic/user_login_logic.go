@@ -2,6 +2,7 @@ package logic
 
 import (
 	"context"
+	"github.com/g1ave/go-cloud-disk/core/define"
 	"github.com/g1ave/go-cloud-disk/core/models"
 	"github.com/g1ave/go-cloud-disk/core/utils"
 	"log"
@@ -34,11 +35,16 @@ func (l *UserLoginLogic) UserLogin(req *types.LoginRequest) (resp *types.LoginRe
 		log.Println(err2)
 		return nil, err2
 	}
-	token, err := utils.GenerateNewToke(user.ID, user.Name, user.Identity, 3000)
+	token, err := utils.GenerateNewToke(user.ID, user.Name, user.Identity, define.TokenExpiredTime)
+	if err != nil {
+		return nil, err
+	}
+	refreshToken, err := utils.GenerateNewToke(user.ID, user.Name, user.Identity, define.RefreshTokenExpiredTime)
 	if err != nil {
 		return nil, err
 	}
 	resp = new(types.LoginResponse)
 	resp.Token = token
+	resp.RefreshToken = refreshToken
 	return
 }

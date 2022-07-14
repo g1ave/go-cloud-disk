@@ -7,7 +7,8 @@ type LoginRequest struct {
 }
 
 type LoginResponse struct {
-	Token string `json:"token"`
+	Token        string `json:"token"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type UserDetailRequest struct {
@@ -34,6 +35,14 @@ type UserRegisterRequest struct {
 }
 
 type UserRegisterResponse struct {
+}
+
+type RefreshTokenRequest struct {
+}
+
+type RefreshTokenResponse struct {
+	Token        string `json:"identity"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type FileShareSaveRequest struct {

@@ -19,7 +19,8 @@ type LoginRequest {
 }
 
 type LoginResponse {
-	Token string `json:"token"`
+	Token        string `json:"token"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type UserDetailRequest {
@@ -86,6 +87,16 @@ service core-api {
 	// Save shared file
 	@handler FileShareSave
 	post /file/share/save(FileShareSaveRequest) returns (FileShareSaveResponse)
+	
+	// RefreshToken
+	@handler RefreshToken
+	post /refreshToken(RefreshTokenRequest) returns (RefreshTokenResponse)
+}
+
+type RefreshTokenRequest {}
+type RefreshTokenResponse {
+	Token        string `json:"identity"`
+	RefreshToken string `json:"refresh_token"`
 }
 
 type FileShareSaveRequest {

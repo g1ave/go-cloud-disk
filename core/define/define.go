@@ -16,7 +16,11 @@ var JwtKey = "cloud-disk-key"
 
 var CodeLength = 6
 
-var CodeExpiredTime = 300
+var (
+	CodeExpiredTime         = 300
+	TokenExpiredTime        = 3000
+	RefreshTokenExpiredTime = 6000
+)
 
 var (
 	MailExistedErr     = errors.New("mail existed")
