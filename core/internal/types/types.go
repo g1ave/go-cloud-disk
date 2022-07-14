@@ -36,6 +36,16 @@ type UserRegisterRequest struct {
 type UserRegisterResponse struct {
 }
 
+type FileShareSaveRequest struct {
+	RepoIdentity string `json:"repo_identity"`
+	ParentId     int    `json:"parent_id"`
+	Name         string `json:"name"`
+}
+
+type FileShareSaveResponse struct {
+	Identity string `json:"identity"`
+}
+
 type FileShareDetailsRequest struct {
 	Identity string `path:"identity"`
 }

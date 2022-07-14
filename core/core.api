@@ -82,8 +82,21 @@ service core-api {
 	// Query file details according shared link
 	@handler FileShareDetail
 	get /file/share/details/:identity(FileShareDetailsRequest) returns (FileShareDetailsResponse)
+	
+	// Save shared file
+	@handler FileShareSave
+	post /file/share/save(FileShareSaveRequest) returns (FileShareSaveResponse)
 }
 
+type FileShareSaveRequest {
+	RepoIdentity string `json:"repo_identity"`
+	ParentId     int    `json:"parent_id"`
+	Name         string `json:"name"`
+}
+
+type FileShareSaveResponse {
+	Identity string `json:"identity"`
+}
 type FileShareDetailsRequest {
 	Identity string `path:"identity"`
 }

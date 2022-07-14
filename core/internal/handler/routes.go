@@ -84,6 +84,11 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Path:    "/file/share/details/:identity",
 					Handler: FileShareDetailHandler(serverCtx),
 				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/file/share/save",
+					Handler: FileShareSaveHandler(serverCtx),
+				},
 			}...,
 		),
 	)
