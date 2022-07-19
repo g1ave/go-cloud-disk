@@ -94,6 +94,21 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 					Path:    "/refreshToken",
 					Handler: RefreshTokenHandler(serverCtx),
 				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/file/multipart/init",
+					Handler: FileMultipartUploadInitHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/file/multipart/upload",
+					Handler: FileMultipartUploadProcessHandler(serverCtx),
+				},
+				{
+					Method:  http.MethodPost,
+					Path:    "/file/multipart/complete",
+					Handler: FileMultipartUploadCompleteHandler(serverCtx),
+				},
 			}...,
 		),
 	)

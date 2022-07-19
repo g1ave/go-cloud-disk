@@ -91,6 +91,52 @@ service core-api {
 	// RefreshToken
 	@handler RefreshToken
 	post /refreshToken(RefreshTokenRequest) returns (RefreshTokenResponse)
+	
+	// Initial multipart upload
+	@handler FileMultipartUploadInit
+	post /file/multipart/init(FileMultipartUploadInitRequest) returns (FileMultipartUploadInitResponse)
+	
+	// Process multipart upload
+	@handler FileMultipartUploadProcess
+	post /file/multipart/upload(FileMultipartUploadProcessRequest) returns (FileMultipartUploadProcessResponse)
+	
+	// Complete multipart upload
+	@handler FileMultipartUploadComplete
+	post /file/multipart/complete(FileMultipartUploadCompleteRequest) returns (FileMultipartUploadCompleteResponse)
+}
+
+type FileMultipartUploadProcessRequest { // formdata
+	// key string
+	// upload_id string
+	// part_number int
+}
+type FileMultipartUploadProcessResponse {
+	ETag string `json:"e_tag"`
+}
+
+type FileMultipartUploadCompleteRequest {
+	Key       string     `json:"key"`
+	UploadId  string     `json:"upload_id"`
+	FileParts []FilePart `json:"file_parts"`
+}
+
+type FilePart {
+	PartNumber int    `json:"part_number"`
+	ETag       string `json:"e_tag"`
+}
+type FileMultipartUploadCompleteResponse {
+}
+
+type FileMultipartUploadInitRequest {
+	Md5  string `json:"md5"`
+	Name string `json:"name"`
+	Ext  string `json:"ext"`
+}
+
+type FileMultipartUploadInitResponse {
+	Identity string `json:"identity"`
+	UploadId string `json:"upload_id"`
+	Key      string `json:"key"`
 }
 
 type RefreshTokenRequest {}

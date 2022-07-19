@@ -37,6 +37,39 @@ type UserRegisterRequest struct {
 type UserRegisterResponse struct {
 }
 
+type FileMultipartUploadProcessRequest struct {
+}
+
+type FileMultipartUploadProcessResponse struct {
+	ETag string `json:"e_tag"`
+}
+
+type FileMultipartUploadCompleteRequest struct {
+	Key       string     `json:"key"`
+	UploadId  string     `json:"upload_id"`
+	FileParts []FilePart `json:"file_parts"`
+}
+
+type FilePart struct {
+	PartNumber int    `json:"part_number"`
+	ETag       string `json:"e_tag"`
+}
+
+type FileMultipartUploadCompleteResponse struct {
+}
+
+type FileMultipartUploadInitRequest struct {
+	Md5  string `json:"md5"`
+	Name string `json:"name"`
+	Ext  string `json:"ext"`
+}
+
+type FileMultipartUploadInitResponse struct {
+	Identity string `json:"identity"`
+	UploadId string `json:"upload_id"`
+	Key      string `json:"key"`
+}
+
 type RefreshTokenRequest struct {
 }
 
