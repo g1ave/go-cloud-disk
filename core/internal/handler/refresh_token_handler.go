@@ -18,7 +18,7 @@ func RefreshTokenHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		}
 
 		l := logic.NewRefreshTokenLogic(r.Context(), svcCtx)
-		resp, err := l.RefreshToken(&req)
+		resp, err := l.RefreshToken(&req, r.Header.Get("Authorization"))
 		if err != nil {
 			httpx.Error(w, err)
 		} else {
