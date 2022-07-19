@@ -23,6 +23,7 @@ type Config struct {
 	COS struct {
 		SecretId  string `yaml:"secretId"`
 		SecretKey string `yaml:"secretKey"`
+		BaseURL   string `yaml:"baseURL"`
 	}
 }
 
